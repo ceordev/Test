@@ -23,12 +23,13 @@
         <span class="task-status status-{{ task.status.toLowerCase() }}">{{ task.status }}</span>
       </div>
       <div class="task-actions">
-        <select [(ngModel)]="task.status" (change)="onUpdateStatus(task.id, $event.target.value)" class="status-action-select">
+        <!-- CORREGIDO: Se pasa directamente task.status que ya está actualizado por ngModel -->
+        <select [(ngModel)]="task.status" (change)="onUpdateStatus(task.id, task.status)" class="status-action-select">
           <option value="OPEN">Open</option>
-          <option value="IN_PROGRESS">En progreso</option>
-          <option value="DONE">Terminadas</option>
+          <option value="IN_PROGRESS">In Progress</option>
+          <option value="DONE">Done</option>
         </select>
-        <button (click)="onDeleteTask(task.id)" class="delete-button">Borrar</button>
+        <button (click)="onDeleteTask(task.id)" class="delete-button">Delete</button>
       </div>
     </li>
     <li *ngIf="tasks.length === 0 && !errorMessage" class="no-tasks">No hay nada.</li>
