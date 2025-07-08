@@ -1,2 +1,2 @@
 Hola,
-Este es mi prueba técnica
+Esta es mi prueba técnica

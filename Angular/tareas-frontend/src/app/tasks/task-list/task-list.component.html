@@ -1,0 +1,36 @@
+<div class="task-list-container">
+  <h2>My Tasks</h2>
+
+  <div class="filters">
+    <input type="text" [(ngModel)]="searchTerm" (input)="onSearchChange()" placeholder="Buscar Tareas..." class="search-input">
+    <select [(ngModel)]="filterStatus" (change)="onFilterChange()" class="status-select">
+      <option value="">Todo</option>
+      <option value="OPEN">Open</option>
+      <option value="IN_PROGRESS">En progreso</option>
+      <option value="DONE">Terminadas</option>
+    </select>
+  </div>
+
+  <app-task-form (taskCreated)="onCreateTask($event)"></app-task-form>
+
+  <div *ngIf="errorMessage" class="error-message-global">{{ errorMessage }}</div>
+
+  <ul class="task-items">
+    <li *ngFor="let task of tasks" class="task-item">
+      <div class="task-details">
+        <h3>{{ task.title }}</h3>
+        <p>{{ task.description }}</p>
+        <span class="task-status status-{{ task.status.toLowerCase() }}">{{ task.status }}</span>
+      </div>
+      <div class="task-actions">
+        <select [(ngModel)]="task.status" (change)="onUpdateStatus(task.id, $event.target.value)" class="status-action-select">
+          <option value="OPEN">Open</option>
+          <option value="IN_PROGRESS">En progreso</option>
+          <option value="DONE">Terminadas</option>
+        </select>
+        <button (click)="onDeleteTask(task.id)" class="delete-button">Borrar</button>
+      </div>
+    </li>
+    <li *ngIf="tasks.length === 0 && !errorMessage" class="no-tasks">No hay nada.</li>
+  </ul>
+</div>
