@@ -1,5 +1,5 @@
 <div class="task-list-container">
-  <h2>My Tasks</h2>
+  <h2>Mis tareas</h2>
 
   <div class="filters">
     <input type="text" [(ngModel)]="searchTerm" (input)="onSearchChange()" placeholder="Buscar Tareas..." class="search-input">
@@ -26,10 +26,10 @@
         <!-- CORREGIDO: Se pasa directamente task.status que ya está actualizado por ngModel -->
         <select [(ngModel)]="task.status" (change)="onUpdateStatus(task.id, task.status)" class="status-action-select">
           <option value="OPEN">Open</option>
-          <option value="IN_PROGRESS">In Progress</option>
-          <option value="DONE">Done</option>
+          <option value="IN_PROGRESS">En Progreso</option>
+          <option value="DONE">Terminada</option>
         </select>
-        <button (click)="onDeleteTask(task.id)" class="delete-button">Delete</button>
+        <button (click)="onDeleteTask(task.id)" class="delete-button">Borrar</button>
       </div>
     </li>
     <li *ngIf="tasks.length === 0 && !errorMessage" class="no-tasks">No hay nada.</li>
